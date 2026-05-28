@@ -247,17 +247,8 @@ body {
 .nav-prev { left: 16px; }
 .nav-next { right: 16px; }
 
-/* Card counter */
-.card-counter {
-  text-align: center;
-  font-family: var(--font-display);
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  letter-spacing: 2px;
-  padding: 10px 0 16px;
-}
-.counter-sep { color: var(--dark-border); margin: 0 6px; }
+
+
 
 /* ============================================================
    MILESTONE CARD

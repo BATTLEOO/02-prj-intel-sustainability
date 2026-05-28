@@ -994,11 +994,6 @@
     <button class="nav-btn nav-next" id="navNext" aria-label="Next">&#8594;</button>
   </section>
 
-  <!-- Card counter -->
-  <div class="card-counter">
-    <span id="currentCard">1</span> <span class="counter-sep">/</span> <span>9</span>
-  </div>
-
   <footer class="site-footer">
     <img src="img/intel-header-logo.svg" alt="Intel" class="footer-logo" />
     <p>Intel Corporation &mdash; Building a more sustainable world through innovation.</p>
@@ -1028,7 +1023,7 @@
       // Use raw scroll ratio but treat last 2% of scroll range as 100%
       if (maxScroll <= 0) return;
       const ratio = track.scrollLeft / maxScroll;
-      const pct = ratio >= 0.98 ? 100 : ratio * 100;
+      const pct = ratio >= 0.92 ? 100 : ratio * 100;
       progressBar.style.width = pct + '%';
 
       // Card counter via index
