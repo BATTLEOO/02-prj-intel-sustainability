@@ -194,14 +194,12 @@ body {
   /* Grab cursor to hint drag-scrolling */
   cursor: grab;
 
-  /* Custom scrollbar */
-  scrollbar-width: thin;
-  scrollbar-color: var(--intel-blue) var(--dark-border);
+  /* Hide native scrollbar — progress bar at top replaces it */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-.timeline-track::-webkit-scrollbar { height: 5px; }
-.timeline-track::-webkit-scrollbar-track { background: var(--dark-border); border-radius: 2px; }
-.timeline-track::-webkit-scrollbar-thumb { background: linear-gradient(90deg, var(--intel-blue), var(--eco-green)); border-radius: 2px; }
+.timeline-track::-webkit-scrollbar { display: none; }
 
 /* Horizontal connector line */
 .timeline-line {
