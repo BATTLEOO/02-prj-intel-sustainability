@@ -1,9 +1,7 @@
 /* ============================================================
    Intel Sustainability Timeline — style.css
-   Intel brand colors: Blue #0068B5, Bright Blue #00C7FD
    ============================================================ */
 
-/* ---------- 1. Custom Properties (variables) ---------- */
 :root {
   --intel-blue:   #0068B5;
   --intel-bright: #00C7FD;
@@ -20,13 +18,10 @@
   --stem-h:   44px;
   --dot-d:    16px;
 
-  /* Line top = top-padding + card height + stem + half dot */
   --line-top: calc(64px + var(--card-h) + var(--stem-h) + calc(var(--dot-d) / 2));
 }
 
-/* ---------- 2. Reset & Base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -39,43 +34,36 @@ body {
 
 img { display: block; max-width: 100%; }
 
-/* ---------- 3. Header / Hero ---------- */
+/* ── Header ── */
 header {
   position: relative;
   overflow: hidden;
   text-align: center;
-  min-height: 100vh;           /* Full screen landing feel */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 60px 24px 100px;
-
-  /* Deep radial glow: brighter navy center, near-black edges */
   background:
     radial-gradient(ellipse 70% 55% at 50% 50%, #0d2247 0%, #060d1f 65%),
     radial-gradient(ellipse 40% 30% at 50% 50%, #0a1a38 0%, transparent 100%);
 }
 
-/* Thin glowing line at the bottom of the header */
 header::after {
   content: '';
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(
-    90deg, transparent, var(--intel-blue), var(--intel-bright), var(--intel-blue), transparent
-  );
+  background: linear-gradient(90deg, transparent, var(--intel-blue), var(--intel-bright), var(--intel-blue), transparent);
 }
 
-/* Intel logo */
 .logo {
   width: 100px;
   margin: 0 auto 48px;
   filter: brightness(0) invert(1);
 }
 
-/* Main heading */
 .hero-title {
   font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
   font-weight: 800;
@@ -84,21 +72,18 @@ header::after {
   margin-bottom: 32px;
 }
 
-/* "Sustainability" — white */
 .hero-title .line-white {
   display: block;
   font-size: clamp(72px, 11vw, 128px);
   color: #ffffff;
 }
 
-/* "Through the Ages" — Intel bright blue */
 .hero-title .line-blue {
   display: block;
   font-size: clamp(72px, 11vw, 128px);
   color: var(--intel-bright);
 }
 
-/* Subheading */
 header p.hero-sub {
   max-width: 480px;
   margin: 0 auto 52px;
@@ -108,7 +93,6 @@ header p.hero-sub {
   font-weight: 300;
 }
 
-/* "SCROLL TO EXPLORE →" pill button */
 .scroll-btn {
   display: inline-flex;
   align-items: center;
@@ -141,7 +125,7 @@ header p.hero-sub {
 
 .scroll-btn:hover .btn-arrow { transform: translateX(5px); }
 
-/* ---------- 4. Timeline Scroll Wrapper ---------- */
+/* ── Timeline Scroll ── */
 .timeline-scroll {
   overflow-x: auto;
   padding: 0 40px 60px;
@@ -155,22 +139,21 @@ header p.hero-sub {
 .timeline-scroll::-webkit-scrollbar-thumb  { background: var(--intel-blue); border-radius: 3px; }
 .timeline-scroll::-webkit-scrollbar-thumb:hover { background: var(--intel-bright); }
 
-/* ---------- 5. Timeline Track ---------- */
+/* ── Timeline Track ── */
 .timeline-track {
   position: relative;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: 24px;
-  min-width: max-content;      /* Forces one long row for horizontal scroll */
+  min-width: max-content;
   padding-top: 64px;
   padding-bottom: 40px;
 }
 
-/* Glowing horizontal axis line */
 .timeline-axis {
   position: absolute;
-  top: var(--line-top);        /* Calculated to align with the dots */
+  top: var(--line-top);
   left: 0;
   right: 0;
   height: 2px;
@@ -182,7 +165,7 @@ header p.hero-sub {
   box-shadow: 0 0 12px rgba(0, 199, 253, 0.40);
 }
 
-/* ---------- 6. Timeline Item (card + stem + dot) ---------- */
+/* ── Timeline Item ── */
 .timeline-item {
   display: flex;
   flex-direction: column;
@@ -191,7 +174,6 @@ header p.hero-sub {
   flex-shrink: 0;
 }
 
-/* Vertical stem from card bottom to dot */
 .node-stem {
   width: 2px;
   height: var(--stem-h);
@@ -199,7 +181,6 @@ header p.hero-sub {
   flex-shrink: 0;
 }
 
-/* Glowing dot on the axis */
 .node-dot {
   width: var(--dot-d);
   height: var(--dot-d);
@@ -218,14 +199,14 @@ header p.hero-sub {
   box-shadow: 0 0 0 6px rgba(0,199,253,0.20), 0 0 24px rgba(0,199,253,0.80);
 }
 
-/* ---------- 7. Card ---------- */
+/* ── Card ── */
 .card {
   width: 100%;
-  height: var(--card-h);       /* Fixed height keeps the axis line aligned */
+  height: var(--card-h);
   border-radius: 14px;
   border: 1px solid var(--border);
   background: var(--bg-card);
-  overflow: hidden;            /* Clips the overlay slide-up animation */
+  overflow: hidden;
   position: relative;
   box-shadow: 0 4px 24px rgba(0,0,0,0.50);
   transition:
@@ -240,17 +221,24 @@ header p.hero-sub {
   border-color: var(--intel-bright);
 }
 
-/* ---------- 8. Card Image ---------- */
+/* ── Card Image (SVG container) ── */
 .card-img {
   width: 100%;
   height: var(--img-h);
-  object-fit: cover;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.card-img svg {
+  width: 100%;
+  height: 100%;
+  display: block;
   transition: transform 0.5s ease;
 }
 
-.card:hover .card-img { transform: scale(1.06); }
+.card:hover .card-img svg { transform: scale(1.04); }
 
-/* ---------- 9. Card Body (always visible) ---------- */
+/* ── Card Body ── */
 .card-body { padding: 18px 20px 0; }
 
 .card-year {
@@ -272,7 +260,7 @@ header p.hero-sub {
   color: var(--text);
 }
 
-/* ---------- 10. Card Overlay (hidden, slides up on hover) ---------- */
+/* ── Card Overlay (hidden description) ── */
 .card-overlay {
   position: absolute;
   bottom: 0; left: 0; right: 0;
@@ -284,11 +272,11 @@ header p.hero-sub {
   padding: 20px;
   display: flex;
   align-items: center;
-  transform: translateY(100%);             /* Hidden below the card edge */
+  transform: translateY(100%);
   transition: transform 0.40s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.card:hover .card-overlay { transform: translateY(0); } /* Slide in */
+.card:hover .card-overlay { transform: translateY(0); }
 
 .card-overlay p {
   font-size: 13px;
@@ -296,7 +284,7 @@ header p.hero-sub {
   color: #b8d4ee;
 }
 
-/* ---------- 11. Footer ---------- */
+/* ── Footer ── */
 footer {
   text-align: center;
   padding: 32px 24px;
@@ -306,26 +294,15 @@ footer {
   border-top: 1px solid rgba(0, 104, 181, 0.15);
 }
 
-/* ============================================================
-   12. RESPONSIVE — Mobile (stacks vertically at ≤768px)
-   ============================================================ */
+/* ── Mobile (≤768px) ── */
 @media (max-width: 768px) {
 
-  header {
-    min-height: auto;
-    padding: 60px 24px 72px;
-  }
+  header { min-height: auto; padding: 60px 24px 72px; }
 
   .hero-title .line-white,
-  .hero-title .line-blue {
-    font-size: clamp(52px, 15vw, 80px);
-  }
+  .hero-title .line-blue { font-size: clamp(52px, 15vw, 80px); }
 
-  .timeline-scroll {
-    overflow-x: visible;
-    padding: 0 20px 40px;
-    cursor: default;
-  }
+  .timeline-scroll { overflow-x: visible; padding: 0 20px 40px; cursor: default; }
 
   .timeline-track {
     flex-direction: column;
@@ -349,7 +326,7 @@ footer {
 
   .node-dot {
     flex-shrink: 0;
-    margin-left: -9px;    /* Centers dot on the left border */
+    margin-left: -9px;
     margin-top: 20px;
     margin-right: 16px;
   }
@@ -359,7 +336,6 @@ footer {
   .card { width: 100%; height: auto; min-height: 340px; }
   .card-img { height: 180px; }
 
-  /* Always show description on mobile (no hover on touch) */
   .card-overlay {
     position: static;
     transform: none;
