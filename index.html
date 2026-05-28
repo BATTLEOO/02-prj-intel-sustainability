@@ -985,6 +985,8 @@
         <div class="timeline-dot eco-dot"><div class="dot-ring eco-ring"></div></div>
       </div>
 
+      <!-- Spacer so last card scrolls fully into view -->
+      <div class="timeline-end-spacer"></div>
     </div><!-- end .timeline-track -->
 
     <!-- Nav arrows -->
@@ -1022,13 +1024,17 @@
 
     function updateProgress() {
       const maxScroll = track.scrollWidth - track.clientWidth;
-      const pct = maxScroll > 0 ? (track.scrollLeft / maxScroll) * 100 : 0;
+
+      // Use raw scroll ratio but treat last 2% of scroll range as 100%
+      if (maxScroll <= 0) return;
+      const ratio = track.scrollLeft / maxScroll;
+      const pct = ratio >= 0.98 ? 100 : ratio * 100;
       progressBar.style.width = pct + '%';
 
-      // update current card number
+      // Card counter via index
       const cardW = getCardWidth();
-      const idx = Math.round(track.scrollLeft / cardW);
-      currentCardEl.textContent = Math.min(idx + 1, CARD_COUNT);
+      const idx = Math.min(Math.round(track.scrollLeft / cardW), CARD_COUNT - 1);
+      currentCardEl.textContent = idx + 1;
     }
 
     track.addEventListener('scroll', updateProgress, { passive: true });

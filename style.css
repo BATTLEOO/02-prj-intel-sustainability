@@ -190,6 +190,7 @@ body {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 
+
   /* Grab cursor to hint drag-scrolling */
   cursor: grab;
 
@@ -731,4 +732,9 @@ body {
 .milestone-card:hover .svg-embed svg {
   transform: scale(1.08) rotate(0.5deg);
   filter: brightness(1.05) saturate(1.1);
+}
+
+/* End spacer: hidden, no longer needed for layout */
+.timeline-end-spacer {
+  display: none;
 }
